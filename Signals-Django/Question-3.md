@@ -40,11 +40,11 @@ class LogEntry(models.Model):
 # Test Execution
 if __name__ == "__main__":
     try:
-        with transaction.atomic():  # Start a transaction
+        with transaction.atomic():
             print("Creating TestModel instance...")
-            test_obj = TestModel.objects.create(name="TestEntry")  # Triggers signal
+            test_obj = TestModel.objects.create(name="TestEntry")
             print("Rolling back transaction!")
-            raise Exception("Simulated Error")  # Force rollback
+            raise Exception("Simulated Error")
 
     except Exception as e:
         print("Transaction rolled back.")

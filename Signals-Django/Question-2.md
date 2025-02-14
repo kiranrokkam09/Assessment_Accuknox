@@ -27,7 +27,7 @@ from django.apps import AppConfig
 # Signal Handler
 @receiver(post_save, sender=User)
 def check_thread_signal_handler(sender, instance, **kwargs):
-    print(f"Signal Handler Thread ID: {threading.get_ident()}")  # Print thread ID
+    print(f"Signal Handler Thread ID: {threading.get_ident()}")
 
 # App Configuration to Connect Signal
 class MyAppConfig(AppConfig):
@@ -35,15 +35,15 @@ class MyAppConfig(AppConfig):
     name = "myapp"
 
     def ready(self):
-        import myapp.signals  # Ensures signals are registered
+        import myapp.signals
 
 # Test Signal Execution
 if __name__ == "__main__":
     from django.contrib.auth.models import User
     import time
 
-    print(f"Main Execution Thread ID: {threading.get_ident()}")  # Print main thread ID
-    user = User.objects.create(username="test_user")  # Triggers signal
+    print(f"Main Execution Thread ID: {threading.get_ident()}")
+    user = User.objects.create(username="test_user")
 ```
 
 ---
